@@ -6,8 +6,7 @@
     "pages/all_comment/all_comment",
     "pages/comment/comment",
     "pages/logs/logs",
-    "pages/new/new",
-    "pages/user/user"
+    "pages/new/new"
   ],
   "window": {
     "backgroundTextStyle":"light",
