@@ -1,0 +1,19 @@
+<view class="container" style="margin-top: 10px">
+  <map id="map" longitude="113.320205" latitude="23.131245" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+
+
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto" hidden>
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+
+<view class="container spot-list">
+  <block wx:for="{{array}}" wx:for-item="spot" wx:key="*this">
+    <text class="spot-item">{{index + 1}}. {{spot}}</text>
+  </block>
+</view>
+

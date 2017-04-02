@@ -1,0 +1,19 @@
+<!--user.wxml-->
+<view class="container" style="margin-top: 10px; margin-bottom:60px">
+  <view bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="commit-title">
+    <text>我提交的</text>
+  </view>
+
+  <view class="logo">
+    <image src="/image/logo.png" background-size="cover"></image>
+  </view>
+
+  <view>
+    <text class="commit-notify">暂无提交</text>
+  </view>
+</view>
