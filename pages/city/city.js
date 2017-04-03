@@ -20,7 +20,7 @@ Page({
     wx.setNavigationBarTitle({
       title: city_name
     })
-    var request_url = "http://1f344f39.ngrok.io/api/v1/city_spot_list/" + city_name + "/"
+    var request_url = "http://192.168.2.2:8000/api/v1/city_spot_list/" + city_name + "/"
     wx.request({
       url: request_url,
       header: {

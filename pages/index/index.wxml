@@ -14,7 +14,7 @@
                   <view class="userinfo">
                     <text class="user-motto" style="margin-top: 20px">AwesomeCoffice</text>
                     <text class="user-motto" style="margin-top: 20px; margin-left:10px; margin-right: 10px">与自由工作者、程序员、设计师分享适合办公的咖啡馆、面包店</text>
-                    <text class="user-motto" style="margin-top: 40px; margin-left:10px; margin-right: 10px">还没想好推荐什么地方</text>
+                    <text class="user-motto" style="margin-top: 20px; margin-left:10px; margin-right: 10px">还没想好推荐什么地方</text>
                   </view>
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
@@ -46,37 +46,71 @@
                 </view>
                 <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
                   <!--user.wxml-->
-                  <view class="container" style="margin-top: 10px">
+                  <view style="margin-top: 10px">
                     <view bindtap="bindLogViewTap" class="userinfo">
                       <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
                       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
                     </view>
 
-                    <view class="commit-title">
-                      <text>我去过的</text>
+                    <view class="page__bd" style="margin-top:10px">
+                      <view class="weui-panel weui-panel_access">
+                        <view class="weui-panel__hd" style="font-size:20px; color:black; border: 1rpx solid #fff">我去过的</view>
+                        <view wx:if="{{user_comment_list != '1'}}" class="weui-panel__bd" id="{{spot_data.id}}">
+                          <block wx:for="{{user_comment_list}}" wx:for-item="comment" wx:key="*this">
+                            <view class="weui-media-box weui-media-box_text" id="{{comment.id}}" bindtap="bindViewTap">
+                              <view class="weui-media-box__title weui-media-box__title_in-text">@{{comment.comment_user_name}}</view>
+                              <view wx:if="{{comment.comment_mark == 'comment'}}" class="weui-media-box__desc">在 {{comment.comment_date}} 评论: {{comment.comment_message}}</view>
+                              <view wx:else class="weui-media-box__desc">在 {{comment.comment_date}} 签到</view>
+                            </view>
+                          </block>
+                        </view>
+                        <view wx:else class="weui-panel__bd">
+                          <view class="weui-media-box weui-media-box_text">
+                            <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:center">暂无评论</view>
+                            <view class="logo">
+                              <image src="/image/logo.png" background-size="cover"></image>
+                            </view>
+                          </view>
+                        </view>
+                        <view class="weui-panel__ft" hidden>
+                          <view class="weui-cell weui-cell_access weui-cell_link">
+                            <view class="weui-cell__bd" bindtap="bindAllCommentViewTap" id="{{spot_id}}@{{spot_data.name}}">查看更多</view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                          </view>
+                        </view>
+                      </view>
                     </view>
 
-                    <view class="logo">
-                      <image src="/image/logo.png" background-size="cover"></image>
+                    <view class="page__bd" style="margin-top:10px">
+                      <view class="weui-panel weui-panel_access">
+                        <view class="weui-panel__hd" style="font-size:20px; color:black; border: 1rpx solid #fff">我提交的</view>
+                        <view wx:if="{{user_spot_list != '1'}}" class="weui-panel__bd" id="{{spot_data.id}}">
+                          <block wx:for="{{user_spot_list}}" wx:for-item="comment" wx:key="*this">
+                            <view class="weui-media-box weui-media-box_text" id="{{comment.id}}" bindtap="bindViewTap">
+                              <view class="weui-media-box__title weui-media-box__title_in-text">@{{comment.comment_user_name}}</view>
+                              <view wx:if="{{comment.comment_mark == 'comment'}}" class="weui-media-box__desc">在 {{comment.comment_date}} 评论: {{comment.comment_message}}</view>
+                              <view wx:else class="weui-media-box__desc">在 {{comment.comment_date}} 签到</view>
+                            </view>
+                          </block>
+                        </view>
+                        <view wx:else class="weui-panel__bd">
+                          <view class="weui-media-box weui-media-box_text">
+                            <view class="weui-media-box__title weui-media-box__title_in-text" style="text-align:center">暂无提交</view>
+                            <view class="logo">
+                              <image src="/image/logo.png" background-size="cover"></image>
+                            </view>
+                          </view>
+                        </view>
+                        <view class="weui-panel__ft" hidden>
+                          <view class="weui-cell weui-cell_access weui-cell_link">
+                            <view class="weui-cell__bd" bindtap="bindAllCommentViewTap" id="{{spot_id}}@{{spot_data.name}}">查看更多</view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                          </view>
+                        </view>
+                      </view>
                     </view>
 
-                    <view>
-                      <text class="commit-notify">暂无签到</text>
-                    </view>
-
-                    <view class="commit-title">
-                      <text>我提交的</text>
-                    </view>
-
-                    <view class="logo">
-                      <image src="/image/logo.png" background-size="cover"></image>
-                    </view>
-
-                    <view>
-                      <text class="commit-notify">暂无提交</text>
-                    </view>
-
-                    <view style="margin-bottom:60px; margin-top: 20px">
+                    <view class="button-sp-area">
                       <button class="weui-btn" type="primary" plain="true" bindtap="bindNewViewTap">提交新地点</button>
                     </view>
                   </view>

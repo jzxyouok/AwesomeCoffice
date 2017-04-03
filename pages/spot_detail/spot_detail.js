@@ -31,7 +31,7 @@ Page({
     var that = this
     var spot_id = event.currentTarget.id.split('@')[0]
     var spot_name = event.currentTarget.id.split('@')[1]
-    var check_request_url = "http://1f344f39.ngrok.io/api/v1/comments/?format=json"
+    var check_request_url = "http://192.168.2.2:8000/api/v1/comments/?format=json"
     wx.request({
       method: 'POST',
       data: {
@@ -92,7 +92,7 @@ Page({
     //   })
     // }
 
-    var request_url = "http://1f344f39.ngrok.io/api/v1/spots/" + spot_id + "/?format=json"
+    var request_url = "http://192.168.2.2:8000/api/v1/spots/" + spot_id + "/?format=json"
     wx.request({
       url: request_url,
       header: {
@@ -125,7 +125,7 @@ Page({
       }
     })
 
-    var spot_comment_list_request_url = "http://1f344f39.ngrok.io/api/v1/spot_comment_list/" + spot_id + "/?format=json"
+    var spot_comment_list_request_url = "http://192.168.2.2:8000/api/v1/spot_comment_list/" + spot_id + "/?format=json"
     wx.request({
       url: spot_comment_list_request_url,
       header: {

@@ -1,49 +1,45 @@
-page,
-.page,
-.page__bd{
-    height: 100%;
+page{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
 }
-.page__bd{
-    padding-bottom: 0;
+.page__hd {
+    padding: 40px;
 }
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.page__bd {
+    padding-bottom: 40px;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.page__bd_spacing {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.userinfo-nickname {
-  color: #aaa;
+.page__ft{
+    padding-bottom: 10px;
+    text-align: center;
 }
 
-.usermotto {
-  margin-top: 200px;
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
 }
 
-
-.commit-title {
-  margin-top: 30px;
-  font-size: 16px;
+.page__desc {
+    margin-top: 5px;
+    color: #888888;
+    text-align: left;
+    font-size: 14px;
 }
 
-.logo {
-  margin-top: 10px
+.button-sp-area{
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 60%;
 }
-
-.commit-notify {
-  color: #aaa;
-  margin-top:20px;
-  font-size: 14px;
+.mini-btn{
+    margin-right: 5px;
 }
-
 
 /**wx-scrollable-tab-view**/
 .header {
@@ -162,13 +158,13 @@ page,
   font-size: 14px;
 }
 
+.usermotto {
+  margin-top: 200px;
+}
+
 .commit-title {
   margin-top: 30px;
   font-size: 16px;
-}
-
-.logo {
-  margin-top: 10px
 }
 
 .commit-notify {

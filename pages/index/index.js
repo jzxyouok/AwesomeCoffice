@@ -13,7 +13,7 @@ Page({
           {alphabet: 'G', datas: ['广州']},
           {alphabet: 'H', datas: ['杭州']},
           {alphabet: 'N', datas: ['南京']},
-          {alphabet: 'S', datas: ['上海','深圳']},
+          {alphabet: 'S', datas: ['上海','深圳', '苏州']},
           {alphabet: 'W', datas: ['武汉']},
         ],
         alpha: '',
@@ -52,17 +52,55 @@ Page({
         console.log('userInfo')
         console.log(userInfo)
 
+        function getUserCommentList(user_data) {
+          var user_comment_list_request_url = "http://192.168.2.2:8000/api/v1/user_comment_list/" + user_data.id + "/?format=json"
+          wx.request({
+            url: user_comment_list_request_url,
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function(res) {
+              var user_comment_list = res.data
+              if (_.isEmpty(user_comment_list)) {
+                user_comment_list = '1'
+              }
+              that.setData({
+                user_comment_list: user_comment_list
+              })
+            }
+          })
+        }
+
+        function getUserSpotList(user_data) {
+          var user_comment_list_request_url = "http://192.168.2.2:8000/api/v1/user_spot_list/" + user_data.id + "/?format=json"
+          wx.request({
+            url: user_comment_list_request_url,
+            header: {
+              'content-type': 'application/json'
+            },
+            success: function(res) {
+              var user_spot_list = res.data
+              if (_.isEmpty(user_spot_list)) {
+                user_spot_list = '1'
+              }
+              that.setData({
+                user_spot_list: user_spot_list
+              })
+            }
+          })
+        }
+
         var nickname = userInfo['nickName']
         var avatarurl = userInfo['avatarUrl']
-        var check_user_request_url = "http://1f344f39.ngrok.io/api/v1/check_user/" + nickname + "/?format=json"
+        var check_user_request_url = "http://192.168.2.2:8000/api/v1/check_user/" + nickname + "/?format=json"
         wx.request({
           url: check_user_request_url,
           header: {
-              'content-type': 'application/json'
+            'content-type': 'application/json'
           },
           success: function(res) {
             if (_.isEmpty(res.data)) {
-              var create_user_request_url = "http://1f344f39.ngrok.io/api/v1/create_weixin_user/?format=json"
+              var create_user_request_url = "http://192.168.2.2:8000/api/v1/create_weixin_user/?format=json"
               wx.request({
                 method: 'POST',
                 data: {
@@ -78,6 +116,9 @@ Page({
                   console.log('user_data')
                   console.log(user_data)
                   wx.setStorageSync('user_data', user_data)
+
+                  getUserCommentList(user_data)
+                  getUserSpotList(user_data)
                 }
               })
             } else {
@@ -85,6 +126,9 @@ Page({
               console.log('user_data')
               console.log(user_data)
               wx.setStorageSync('user_data', user_data)
+
+              getUserCommentList(user_data)
+              getUserSpotList(user_data)
             }
           }
         })
