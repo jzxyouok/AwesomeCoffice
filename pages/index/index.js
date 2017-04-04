@@ -1,12 +1,13 @@
 var util = require('../../utils/util.js')
-var _ = require( '../../libs/underscore-min.js' );
+var _ = require( '../../libs/underscore-min.js' )
 
 var app = getApp()
 
-var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+var sliderWidth = 96 // 需要设置slider的宽度，用于计算中间位置
 
 Page({
     data: {
+
         list: [
           {alphabet: 'Top', datas: []},
           {alphabet: 'B', datas: ['北京']},
@@ -22,8 +23,6 @@ Page({
         activeIndex: 0,
         sliderOffset: 0,
         sliderLeft: 0,
-        logs: [],
-        motto: 'Hello World',
         userInfo: {}
     },
     //事件处理函数
@@ -33,11 +32,11 @@ Page({
         url: '../city/city?city_name=' + city_name
       })
     },
-    bindLogViewTap: function() {
-      wx.navigateTo({
-        url: '../logs/logs'
-      })
-    },
+    // bindLogViewTap: function() {
+    //   wx.navigateTo({
+    //     url: '../logs/logs'
+    //   })
+    // },
     bindNewViewTap: function() {
       wx.navigateTo({
         url: '../new/new'
@@ -51,6 +50,12 @@ Page({
       app.getUserInfo(function(userInfo){
         console.log('userInfo')
         console.log(userInfo)
+
+        that.setData({
+          userInfo:userInfo
+        })
+
+        wx.setStorageSync('userInfo', userInfo)
 
         function getUserCommentList(user_data) {
           var user_comment_list_request_url = "http://192.168.2.2:8000/api/v1/user_comment_list/" + user_data.id + "/?format=json"
@@ -132,10 +137,6 @@ Page({
             }
           }
         })
-
-        that.setData({
-          userInfo:userInfo
-        })
       })
 
       wx.getSystemInfo({
@@ -143,17 +144,17 @@ Page({
               that.setData({
                   sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
                   sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-              });
+              })
           }
-      });
+      })
 
       try {
         var res = wx.getSystemInfoSync()
-        this.pixelRatio = res.pixelRatio;
-        // this.apHeight = 32 / this.pixelRatio;
-        // this.offsetTop = 160 / this.pixelRatio;
-        this.apHeight = 16;
-        this.offsetTop = 80;
+        this.pixelRatio = res.pixelRatio
+        // this.apHeight = 32 / this.pixelRatio
+        // this.offsetTop = 160 / this.pixelRatio
+        this.apHeight = 16
+        this.offsetTop = 80
         this.setData({windowHeight: res.windowHeight + 'px'})
       } catch (e) {
 
@@ -163,24 +164,24 @@ Page({
         this.setData({
             sliderOffset: e.currentTarget.offsetLeft,
             activeIndex: e.currentTarget.id
-        });
+        })
     },
     handlerAlphaTap(e) {
-      let {ap} = e.target.dataset;
-      this.setData({alpha: ap});
+      let {ap} = e.target.dataset
+      this.setData({alpha: ap})
     },
     handlerMove(e) {
-      let {list} = this.data;
-      let moveY = e.touches[0].clientY;
-      let rY = moveY - this.offsetTop;
+      let {list} = this.data
+      let moveY = e.touches[0].clientY
+      let rY = moveY - this.offsetTop
       if(rY >= 0) {
-        let index = Math.ceil((rY - this.apHeight)/ this.apHeight);
+        let index = Math.ceil((rY - this.apHeight)/ this.apHeight)
         if(0 <= index < list.length) {
-          let nonwAp = list[index];
-          nonwAp && this.setData({alpha: nonwAp.alphabet});
+          let nonwAp = list[index]
+          nonwAp && this.setData({alpha: nonwAp.alphabet})
         }
       }
     }
-});
+})
 
 

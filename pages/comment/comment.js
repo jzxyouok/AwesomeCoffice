@@ -14,6 +14,7 @@ Page({
            'spot_id': spot_id,
            'comment_message': comment_message,
            'comment_user_id': wx.getStorageSync('user_data').id,
+           'comment_user_avatarurl': wx.getStorageSync('userInfo').avatarUrl,
            'comment_user_name': wx.getStorageSync('user_data').username,
            'comment_mark': 'comment'
 
