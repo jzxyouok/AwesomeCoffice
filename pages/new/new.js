@@ -39,7 +39,7 @@ Page({
     var commit_message = e.detail.value.commit_message
 
 
-    var comment_request_url = "http://192.168.2.2:8000/api/v1/spots/?format=json"
+    var comment_request_url = "http://45.55.9.229/api/v1/spots/?format=json"
     wx.request({
       method: 'POST',
       data: {

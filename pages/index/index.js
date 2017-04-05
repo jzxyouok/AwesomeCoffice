@@ -58,7 +58,7 @@ Page({
         wx.setStorageSync('userInfo', userInfo)
 
         function getUserCommentList(user_data) {
-          var user_comment_list_request_url = "http://192.168.2.2:8000/api/v1/user_comment_list/" + user_data.id + "/?format=json"
+          var user_comment_list_request_url = "http://45.55.9.229/api/v1/user_comment_list/" + user_data.id + "/?format=json"
           wx.request({
             url: user_comment_list_request_url,
             header: {
@@ -77,7 +77,7 @@ Page({
         }
 
         function getUserSpotList(user_data) {
-          var user_comment_list_request_url = "http://192.168.2.2:8000/api/v1/user_spot_list/" + user_data.id + "/?format=json"
+          var user_comment_list_request_url = "http://45.55.9.229/api/v1/user_spot_list/" + user_data.id + "/?format=json"
           wx.request({
             url: user_comment_list_request_url,
             header: {
@@ -97,7 +97,7 @@ Page({
 
         var nickname = userInfo['nickName']
         var avatarurl = userInfo['avatarUrl']
-        var check_user_request_url = "http://192.168.2.2:8000/api/v1/check_user/" + nickname + "/?format=json"
+        var check_user_request_url = "http://45.55.9.229/api/v1/check_user/" + nickname + "/?format=json"
         wx.request({
           url: check_user_request_url,
           header: {
@@ -105,7 +105,7 @@ Page({
           },
           success: function(res) {
             if (_.isEmpty(res.data)) {
-              var create_user_request_url = "http://192.168.2.2:8000/api/v1/create_weixin_user/?format=json"
+              var create_user_request_url = "http://45.55.9.229/api/v1/create_weixin_user/?format=json"
               wx.request({
                 method: 'POST',
                 data: {

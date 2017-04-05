@@ -7,7 +7,7 @@ Page({
       var comment_message = e.detail.value.comment
       var spot_id = e.detail.value.spot_id
 
-      var comment_request_url = "http://192.168.2.2:8000/api/v1/comments/?format=json"
+      var comment_request_url = "http://45.55.9.229/api/v1/comments/?format=json"
       wx.request({
         method: 'POST',
         data: {
